@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
-import ExpenseItem from "./ExpenseItem";
 import './Expenses.css';
+import ExpensesList from "./ExpensesList";
+import ExpensesChart from "./ExpensesChart";
 
 
 const Expenses = (props) => {
@@ -23,12 +24,18 @@ const Expenses = (props) => {
                 <ExpensesFilter optionChoosed={filteredYear} 
                     onAddSelectedYear={addSelectedHandler} 
                 />
-                {filterByYear.map((expense)=> <ExpenseItem
+                <ExpensesChart expenses={filterByYear} />
+                <ExpensesList item={filterByYear} />
+            </Card>
+
+            {/* Below is another way to output conditional statement. */}
+                {/* {filterByYear.length === 0 && <p>No expense found.</p>}
+                {filterByYear.length > 0 && 
+                 filterByYear.map((expense)=> <ExpenseItem
                     key={expense.id} 
                     title={expense.title} 
                     amount={expense.amount} 
-                    date={expense.date} />)}
-            </Card>
+                    date={expense.date} />)} */}
         </div>
     )
 }
